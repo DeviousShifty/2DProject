@@ -125,14 +125,30 @@ public int getTotalNested() {
 public int getLargest() 
 {
 	int largest = Integer.MIN_VALUE;
+	for (int col =0; col < matrix[0].length; col++ )
+	{
+		for (int row = 0; row <matrix.length; row++)
+		{
+			if(matrix[row][col] > largest) //row is always the first parameter in an array address.
+			{
+				largest = matrix[row][col];
+			}
+		}
+	}
 	
 	return largest;
 }
 
-public int getColTotal(int i) 
+public int getColTotal(int column)
 {
+	int total =0;
 	
-	return 0;
+	for  (int row = 0; row < matrix.length; row++) //if given a parameter use it in the code
+	{
+		total += matrix[row][column];
+	}
+	return total;
+	
 }
  
 }
