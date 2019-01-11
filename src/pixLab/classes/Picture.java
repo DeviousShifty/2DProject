@@ -20,8 +20,9 @@ public class Picture extends SimplePicture
   
   /**
    * Constructor that takes no arguments 
+ * @param pixel 
    */
-  public Picture ()
+  public Picture (Pixel pixel)
   {
     /* not needed but use it to show students the implicit call to super()
      * child constructors always call a parent constructor 
@@ -242,7 +243,7 @@ public class Picture extends SimplePicture
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("widowmaker.jpg");
   }
   
   
@@ -271,6 +272,31 @@ public class Picture extends SimplePicture
       }
     }
   }
+  public void shiftLeftRight(int amount)
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	 Picture temp = new Picture(this);
+	 Pixel [][] copied = temp.getPixels2D();
+	 
+	 int shiftedValue = amount;
+	 int width = pixels[0].length;
+	 
+	 for(int row = 0; row < pixels.length; row++)
+	 {
+		 for(int col = 0; col < pixels[0].length; col++)
+		 {
+			 shiftedValue = (col + amount) % width;
+			 copied[row][col].setColor(pixels[row][shiftedValue].getColor());
+		 }
+	 }
+		for (int row = 0; row < pixels.length; row++)	 
+		{
+			for(int col = 0; col < pixels[0].length; col++)
+			{
+				pixels[row][col].setColor(copied[row][col].getColor());
+			}
+		}
+  }
   
   
   /* Main method for testing - each class in Java can have a main 
@@ -291,4 +317,51 @@ public class Picture extends SimplePicture
 	  arch.explore();
   }
   /** Method to test mirrorVertical */
-} // this } is the end of class Picture, put all new methods before this
+  public void glitchify()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel firstPixel = null;
+	  Pixel secondPixel = null;
+	  Pixel thirdPixel = null;
+	  
+	  for(int start = 0; start < 10; start++)
+	  {
+		  int randomRow = (int) (Math.random() * (pixels.length-20));
+		  int randomCol = (int) (Math.random() * (pixels[0].length-20));
+		  int endRow = randomCol + 20;
+		  int endCol = randomCol + 20;
+		  
+		  randomize(randomRow, endRow, randomCol, endCol);
+	  }
+  }
+
+private void randomize(int randomRow, int endRow, int randomCol, int endCol) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+	
+
+  
+public void chromakey(Picture replacement, Color changeColor)
+{
+	Pixel[][] mainPixels = this.getPixels2D();
+	Pixel[][] replacementPixels = replacement.getPixels2D();
+	for( int row = 0; row < mainPixels.length; row++)
+	{
+		for(int col = 0; col < mainPixels[0].length; col++)
+		{
+			if(mainPixels[row][col].colorDistance(changeColor)< 10)
+			{
+				mainPixels[row][col].setColor(replacementPixels[row][col].getColor());
+			}
+		}
+	}
+}
+
+} 
+
+
+
+

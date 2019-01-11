@@ -283,18 +283,49 @@ public class Pixel
     // update the pixel value in the picture
     updatePicture(getAlpha(), getRed(), green, getBlue());
   } 
+ 
+  public void shiftLeftRight(int amount)
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	 Picture temp = new Picture(this);
+	 Pixel [][] copied = temp.getPixels2D();
+	 
+	 int shiftedValue = amount;
+	 int width = pixels[0].length;
+	 
+	 for(int row = 0; row < pixels.length; row++)
+	 {
+		 for(int col = 0; col < pixels[0].length; col++)
+		 {
+			 shiftedValue = (col + amount) % width;
+			 copied[row][col].setColor(pixels[row][shiftedValue].getColor());
+		 }
+	 }
+		for (int row = 0; row < pixels.length; row++)	 
+		{
+			for(int col = 0; col < pixels[0].length; col++)
+			{
+				pixels[row][col].setColor(copied[row][col].getColor());
+			}
+		}
+  }
   
-  /**
+  private Pixel[][] getPixels2D() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+/**
    * Method to set the blue to a new blue value
    * @param value the new value to use
    */
   public void setBlue(int value)
   {
     // set the blue value to the corrected value
-    int blue = correctValue(value);
+    int ako = correctValue(value);
     
     // update the pixel value in the picture
-    updatePicture(getAlpha(), getRed(), getGreen(), blue);
+    updatePicture(getAlpha(), getRed(), getGreen(), getBlue());
   } 
   
    /**
@@ -312,10 +343,10 @@ public class Pixel
   
   /**
   * Method to get the distance between this pixel's color and the passed color
-  * @param testColor the color to compare to
+  * @param white the color to compare to
   * @return the distance between this pixel's color and the passed color
   */
- public double colorDistance(Color testColor)
+ public double colorDistance1(Color testColor)
  {
    double redDistance = this.getRed() - testColor.getRed();
    double greenDistance = this.getGreen() - testColor.getGreen();
@@ -365,5 +396,11 @@ public class Pixel
       " green=" + getGreen() + 
       " blue=" + getBlue();
   }
+
+public int colorDistance(Color changeColor) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+  
 
 }

@@ -1,4 +1,7 @@
 package pixLab.classes;
+
+import java.awt.Color;
+
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -59,7 +62,15 @@ public class PictureTester
 	  seagull.explore();
 	  seagull.mirrorHorizontal();
 	  
+ }
+  public static void testGlitchify()
+  {
+	  Picture glitched = new Picture("barbaraS.jpg");
+	  glitched.explore();
+	  glitched.glitchify();
+	  glitched.explore();
   }
+
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -68,17 +79,17 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+    //testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
+    //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
-    testMirrorGull();
+   // testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
     //testCopy();
@@ -90,5 +101,17 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  testGlitchify();
+	  testChromakey();
   }
+  public static void testChromakey()
+  {
+	  Picture source = new Picture("gtr.jpg");
+	  Picture background = new Picture("Bat.jpg");
+	  source.explore();
+	  background.explore();
+	  source.chromakey(background, Color.WHITE);
+	  source.explore();
+  }
+  
 }
