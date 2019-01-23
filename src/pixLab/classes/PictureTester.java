@@ -65,12 +65,39 @@ public class PictureTester
  }
   public static void testGlitchify()
   {
-	  Picture glitched = new Picture("barbaraS.jpg");
+	  Picture glitched = new Picture("vulcan.jpg");
 	  glitched.explore();
 	  glitched.glitchify();
 	  glitched.explore();
   }
+  public void glitchify()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel firstPixel = null;
+	  Pixel secondPixel = null;
+	  Pixel thirdPixel = null;
+	  
+	  for(int start = 0; start < 10; start++)
+	  {
+		  int randomRow = (int) (Math.random() * (pixels.length-20));
+		  int randomCol = (int) (Math.random() * (pixels[0].length-20));
+		  int endRow = randomCol + 20;
+		  int endCol = randomCol + 20;
+		  
+		  randomize(randomRow, endRow, randomCol, endCol);
+	  }
+  }
 
+private Pixel[][] getPixels2D() 
+{
+	
+	return null;
+}
+
+private void randomize(int randomRow, int endRow, int randomCol, int endCol) {
+	
+	
+}
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -102,12 +129,25 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 	  testGlitchify();
-	  testChromakey();
+	 // testChromakey();
+	 // testGlitch();
   }
-  public static void testChromakey()
+  private static void testGlitch() 
   {
-	  Picture source = new Picture("gtr.jpg");
-	  Picture background = new Picture("Bat.jpg");
+	  Picture source = new Picture("vulcan.jpg");
+	  source.explore();
+	  source.explore();
+	  source.chromakey(source, Color.WHITE);
+  }
+	
+  
+
+  
+  
+public static void testChromakey()
+  {
+	  Picture source = new Picture("vulcan.jpg");
+	  Picture background = new Picture("agera.jpg");
 	  source.explore();
 	  background.explore();
 	  source.chromakey(background, Color.WHITE);

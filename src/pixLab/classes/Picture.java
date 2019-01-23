@@ -1,4 +1,6 @@
+
 package pixLab.classes;
+
 import java.awt.*;
 import java.awt.font.*;
 import java.awt.geom.*;
@@ -14,6 +16,7 @@ import java.util.List; // resolves problem with java.awt.List and java.util.List
  * 
  * @author Barbara Ericson ericson@cc.gatech.edu
  */
+
 public class Picture extends SimplePicture 
 {
   ///////////////////// constructors //////////////////////////////////
@@ -272,6 +275,7 @@ public class Picture extends SimplePicture
       }
     }
   }
+
   public void shiftLeftRight(int amount)
   {
 	  Pixel[][] pixels = this.getPixels2D();
@@ -286,6 +290,32 @@ public class Picture extends SimplePicture
 		 for(int col = 0; col < pixels[0].length; col++)
 		 {
 			 shiftedValue = (col + amount) % width;
+			 copied[row][col].setColor(pixels[row][shiftedValue].getColor());
+		 }
+	 }
+		for (int row = 0; row < pixels.length; row++)	 
+		{
+			for(int col = 0; col < pixels[0].length; col++)
+			{
+				pixels[row][col].setColor(copied[row][col].getColor());
+			}
+		}
+  }
+  
+  public void shiftUpDown(int amount)
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	 Picture temp = new Picture(this);
+	 Pixel [][] copied = temp.getPixels2D();
+	 
+	 int shiftedValue = amount;
+	 int height = pixels[0].length;
+	 
+	 for(int row = 0; row < pixels.length; row++)
+	 {
+		 for(int col = 0; col < pixels[0].length; col++)
+		 {
+			 shiftedValue = (col + amount) % height;
 			 copied[row][col].setColor(pixels[row][shiftedValue].getColor());
 		 }
 	 }
@@ -336,10 +366,13 @@ public class Picture extends SimplePicture
   }
 
 private void randomize(int randomRow, int endRow, int randomCol, int endCol) {
-	// TODO Auto-generated method stub
+	
 	
 }
-
+public void glitch()
+{
+	
+}
 
 	
 
