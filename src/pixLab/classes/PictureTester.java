@@ -20,7 +20,19 @@ public class PictureTester
     beach.zeroBlue();
     beach.explore();
   }
-  
+ 
+  public static void testSteganography()
+  {
+	  Picture source = new Picture("widowmaker.jpg");
+	  Picture message = new Picture("illusion.jpg");
+	  source.explore();
+	  message.explore();
+	  source.hidePicture(message);
+	  source.explore();
+	  source.revealPicture();
+	  source.explore();
+  }
+	
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -70,34 +82,7 @@ public class PictureTester
 	  glitched.glitchify();
 	  glitched.explore();
   }
-  public void glitchify()
-  {
-	  Pixel[][] pixels = this.getPixels2D();
-	  Pixel firstPixel = null;
-	  Pixel secondPixel = null;
-	  Pixel thirdPixel = null;
-	  
-	  for(int start = 0; start < 10; start++)
-	  {
-		  int randomRow = (int) (Math.random() * (pixels.length-20));
-		  int randomCol = (int) (Math.random() * (pixels[0].length-20));
-		  int endRow = randomCol + 20;
-		  int endCol = randomCol + 20;
-		  
-		  randomize(randomRow, endRow, randomCol, endCol);
-	  }
-  }
 
-private Pixel[][] getPixels2D() 
-{
-	
-	return null;
-}
-
-private void randomize(int randomRow, int endRow, int randomCol, int endCol) {
-	
-	
-}
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -128,16 +113,17 @@ private void randomize(int randomRow, int endRow, int randomCol, int endCol) {
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	  testGlitchify();
-	 // testChromakey();
-	 // testGlitch();
+	 // testGlitchify();
+	//  testChromakey();
+	  //testGlitch();
+	  testSteganography();
   }
   private static void testGlitch() 
   {
 	  Picture source = new Picture("vulcan.jpg");
 	  source.explore();
 	  source.explore();
-	  source.chromakey(source, Color.WHITE);
+	  source.glitch();
   }
 	
   
@@ -150,7 +136,7 @@ public static void testChromakey()
 	  Picture background = new Picture("agera.jpg");
 	  source.explore();
 	  background.explore();
-	  source.chromakey(background, Color.WHITE);
+	  source.chromakey(background, new Color(215, 200, 212));
 	  source.explore();
   }
   
