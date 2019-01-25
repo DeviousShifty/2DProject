@@ -15,10 +15,10 @@ public class PictureTester
   /** Method to test zeroBlue */
   public static void testZeroBlue()
   {
-    Picture beach = new Picture("beach.jpg");
-    beach.explore();
-    beach.zeroBlue();
-    beach.explore();
+    Picture mountains = new Picture("mountains.jpg");
+    mountains.explore();
+    mountains.zeroBlue();
+    mountains.explore();
   }
  
   public static void testSteganography()
@@ -36,10 +36,10 @@ public class PictureTester
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
-    Picture caterpillar = new Picture("caterpillar.jpg");
-    caterpillar.explore();
-    caterpillar.mirrorVertical();
-    caterpillar.explore();
+    Picture vulcan = new Picture("vulcan.jpg");
+    vulcan.explore();
+   vulcan.mirrorVertical();
+    vulcan.explore();
   }
   
   /** Method to test mirrorTemple */
@@ -91,14 +91,14 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    //testZeroBlue();
+    testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    //testMirrorVertical();
+    testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
    // testMirrorGull();
@@ -116,9 +116,11 @@ public class PictureTester
 	 // testGlitchify();
 	//  testChromakey();
 	  //testGlitch();
-	  testSteganography();
+	 // testSteganography();
+	  testshiftLeftRight();
+	 // testshiftUpDown();
   }
-  private static void testGlitch() 
+  public static void testGlitch() 
   {
 	  Picture source = new Picture("vulcan.jpg");
 	  source.explore();
@@ -126,7 +128,23 @@ public class PictureTester
 	  source.glitch();
   }
 	
-  
+  public static void testshiftLeftRight()
+	{
+	  Picture mountains = new Picture("mountains.jpg");
+	  mountains.explore();
+	  mountains.shiftLeftRight(500);
+	  mountains.explore();
+	  mountains.shiftLeftRight(500);
+	}
+  public static void testshiftUpDown()
+  {
+	  Picture vulcan = new Picture("vulcan.jpg");
+	  vulcan.explore();
+	  vulcan.shiftUpDown(500);
+	  vulcan.explore();
+	  vulcan.shiftUpDown(500);
+  }
+ 
 
   
   
