@@ -75,12 +75,22 @@ public class PictureTester
 	  seagull.mirrorHorizontal();
 	  
  }
-  public static void testGlitchify()
+  public static void testglitchify()
   {
-	  Picture glitched = new Picture("vulcan.jpg");
-	  glitched.explore();
-	  glitched.glitchify();
-	  glitched.explore();
+	  Picture vulcan = new Picture("vulcan.jpg");
+	  Picture mountains = new Picture("mountains.jpg");
+	  vulcan.explore();
+	  vulcan.shiftUpDown(250);
+	  vulcan.explore();
+	  vulcan.shiftLeftRight(250);
+	  vulcan.explore();
+	  vulcan.mirrorHorizontal();
+	  vulcan.explore();
+	  vulcan.createCollage();
+	  vulcan.explore();
+	 
+
+	 
   }
 
   
@@ -91,14 +101,14 @@ public class PictureTester
     // uncomment a call here to run a test
     // and comment out the ones you don't want
     // to run
-    testZeroBlue();
+   // testZeroBlue();
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
+    //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
    // testMirrorGull();
@@ -113,20 +123,14 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	 // testGlitchify();
-	//  testChromakey();
+	 // testglitchify();
+	  testChromakey();
 	  //testGlitch();
 	 // testSteganography();
-	  testshiftLeftRight();
+	//  testshiftLeftRight();
 	 // testshiftUpDown();
   }
-  public static void testGlitch() 
-  {
-	  Picture source = new Picture("vulcan.jpg");
-	  source.explore();
-	  source.explore();
-	  source.glitch();
-  }
+
 	
   public static void testshiftLeftRight()
 	{
@@ -146,15 +150,13 @@ public class PictureTester
   }
  
 
-  
-  
-public static void testChromakey()
+  public static void testChromakey()
   {
 	  Picture source = new Picture("vulcan.jpg");
-	  Picture background = new Picture("agera.jpg");
+	  Picture background = new Picture("mountains.jpg");
 	  source.explore();
 	  background.explore();
-	  source.chromakey(background, new Color(215, 200, 212));
+	  source.chromakey(background, Color.RED);
 	  source.explore();
   }
   

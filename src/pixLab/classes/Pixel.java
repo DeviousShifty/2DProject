@@ -377,6 +377,11 @@ public int colorDistance(Color changeColor) {
 	// TODO Auto-generated method stub
 	return 0;
 }
+
+public int colorDistance(boolean changeColor) {
+	// TODO Auto-generated method stub
+	return 0;
+}
   
 
 }

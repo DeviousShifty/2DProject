@@ -19,7 +19,12 @@ import java.util.List; // resolves problem with java.awt.List and java.util.List
 
 public class Picture extends SimplePicture 
 {
-  ///////////////////// constructors //////////////////////////////////
+  private static final SimplePicture replacement = null;
+
+
+
+
+///////////////////// constructors //////////////////////////////////
   
   /**
    * Constructor that takes no arguments 
@@ -396,56 +401,147 @@ public class Picture extends SimplePicture
 	  arch.zeroRed();
 	  arch.explore();
   }
+ 
   /** Method to test mirrorVertical */
   public void glitchify()
   {
-	  Pixel[][] pixels = this.getPixels2D();
-	  Pixel firstPixel = null;
-	  Pixel secondPixel = null;
-	  Pixel thirdPixel = null;
-	  
-	  for(int start = 0; start < 10; start++)
 	  {
-		  int randomRow = (int) (Math.random() * (pixels.length-20));
-		  int randomCol = (int) (Math.random() * (pixels[0].length-20));
-		  int endRow = randomCol + 20;
-		  int endCol = randomCol + 20;
-		  
-		  randomize(randomRow, endRow, randomCol, endCol);
-	  }
-  }
+		  Pixel[][] pixels = this.getPixels2D();
+		 Picture temp = new Picture(this);
+		 Pixel [][] copied = temp.getPixels2D();
+		 
+		 int amount = 250;
+		int shiftedValue = amount;
+		 int height = pixels[0].length;
+		 
+		 for(int row = 0; row < pixels.length; row++)
+		 {
+			 for(int col = 0; col < pixels[0].length; col++)
+			 {
+				 shiftedValue = (col + amount) % height;
+				 copied[row][col].setColor(pixels[row][shiftedValue].getColor());
+			 }
+		 }
+			for (int row = 0; row < pixels.length; row++)	 
+			{
+				for(int col = 0; col < pixels[0].length; col++)
+				{
+					pixels[row][col].setColor(copied[row][col].getColor());
+				}
+			}
+	  }//shift up down
+	  {
+		  Pixel[][] pixels = this.getPixels2D();
+		 Picture temp = new Picture(this);
+		 Pixel [][] copied = temp.getPixels2D();
+		 
+		 int amount = 250;
+		int shiftedValue = amount;
+		 int width = pixels[0].length;
+		 
+		 for(int row = 0; row < pixels.length; row++)
+		 {
+			 for(int col = 0; col < pixels[0].length; col++)
+			 {
+				 shiftedValue = (col + amount) % width;
+				if(amount < 0)
+				{
+					shiftedValue = ((col + amount)% width + width) % width;
+				}
+				 copied[row][col].setColor(pixels[row][shiftedValue].getColor());
+			 }
+		 }
+			for (int row = 0; row < pixels.length; row++)	 
+			{
+				for(int col = 0; col < pixels[0].length; col++)
+				{
+					pixels[row][col].setColor(copied[row][col].getColor());
+				}
+			}
+	  } //shift left right
+	  {
+		  Pixel [][] pixels = this.getPixels2D();
+		  Pixel topPixel = null;
+		  Pixel bottomPixel = null;
+		  int height = pixels.length;
+		  for (int row = 0; row < pixels[0].length; row++)
+		    {
+		      for (int col = 0; col < height / 2; col++)
+		      {
+		        topPixel = pixels[row][col];
+		        bottomPixel = pixels[row][height - 1 - col];
+		        bottomPixel.setColor(topPixel.getColor());
+		      }
+		    } 
+		  } //mirror horizontal
+	  
+		    Picture vulcan = new Picture("vulcan.jpg");
+		    Picture widowmaker = new Picture("widowmaker.jpg");
+		    this.copy(vulcan,800,800);
+		    this.copy(widowmaker,900,900);
+		    this.copy(vulcan,200,500);
+		    Picture vulcanNoBlue = new Picture(widowmaker);
+		    vulcanNoBlue.zeroBlue();
+		    this.copy(vulcanNoBlue,300,800);
+		    this.copy(vulcan,400,800);
+		    this.copy(widowmaker,500,800);
+		    this.mirrorVertical();
+		    this.write("widowmaker.jpg");}
+		  //collage
+		    
+		    	public void chromakey(Picture replacement, Color changeColor)
+		    	{
+		    		Pixel [][] mainPixels = this.getPixels2D();
+		    		Pixel[][] replacementPixels = replacement.getPixels2D();
+		    		
+		    		for(int row = 0; row < mainPixels.length; row++)
+		    		{
+		    			for (int col = 0; col < mainPixels[0].length; col++)
+		    		{
+		    		if(mainPixels[row][col].colorDistance(changeColor)<10)
+		    		{
+		    			mainPixels[row][col].setColor(replacementPixels[row][col].getColor());
+		    		}
+		    		}
+		    		}
+		    	}
+
+		    
+		    
+		    
+  
 
 private void randomize(int randomRow, int endRow, int randomCol, int endCol) 
 {
 	
 	
 }
-public void glitch()
-{
-	
-	
-}
+
 	
 
   
-public void chromakey(Picture replacement, Color changeColor)
+//public void chromakey(Picture replacement, Color changeColor)
 {
-	Pixel[][] mainPixels = this.getPixels2D();
-	Pixel[][] replacementPixels = replacement.getPixels2D();
-	for( int row = 0; row < mainPixels.length; row++)
-	{
-		for(int col = 0; col < mainPixels[0].length; col++)
-		{
-			if(mainPixels[row][col].colorDistance(changeColor)< 10)
-			{
-				mainPixels[row][col].setColor(replacementPixels[row][col].getColor());
-			}
-		}
-	}
+//	Pixel [][] mainPixels = this.getPixels2D();
+//	Pixel[][] replacementPixels = replacement.getPixels2D();
+	
+//	for(int row = 0; row < mainPixels.length; row++)
+//	{
+//		for (int col = 0; col < mainPixels[0].length; col++)
+//	{
+//	if(mainPixels[row][col].colorDistance(changeColor)<10)
+//	{
+//		mainPixels[row][col].setColor(replacementPixels[row][col].getColor());
+//	}
+//	}
+//	}
 }
 
 
-} 
+}
+
+
+
 
 
 
